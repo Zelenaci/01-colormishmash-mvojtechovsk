@@ -5,6 +5,9 @@ import tkinter as tk
 from tkinter import Scale, HORIZONTAL, Canvas, Frame, Entry,LEFT,S,END,StringVar
 # from tkinter import ttk
 
+f = open("SavedColors", "w")
+
+
 
 class Application(tk.Tk):
     name = basename(splitext(basename(__file__.capitalize()))[0])
@@ -73,8 +76,8 @@ class Application(tk.Tk):
 
         self.frameMem = Frame(self)
         self.frameMem.pack()
-        for row in range(10):
-            for column in range(10):
+        for row in range(3):
+            for column in range(3):
                 canvas = Canvas(self.frameMem,width = 50, height = 50, background = "#ffffff")
                 canvas.grid(row = row, column= column)
                 canvas.bind("<Button-1>",self.cliclHandler) 
@@ -86,6 +89,11 @@ class Application(tk.Tk):
 
         ###self.geometry('350x500')
         ###self.configure(background='#000000')
+    def setup():    
+        f= open("SavedColors", "r")
+        f.close()
+        
+
 
     def change(self,var, index,mode):
         r = self.scaleR.get()
@@ -103,16 +111,21 @@ class Application(tk.Tk):
         if self.cget("cursor") != "pencil":
             self.config(cursor = "pencil")
             self.color = event.widget.cget("background")
-        elif self.cget("cursor")=="pencil":    
+        elif self.cget("cursor")=="pencil" and event.widget != self.canvasMain:    
             self.config(cursor ="")
             event.widget.config(background = self.color)
-        if event.widget is self.canvasMain:
-            self.varR.set(value)
-            self.varG.set(value)
-            self.varB.set(value)
+        else:
+            self.color = event.widget.cget("background")
+        if event.widget == self.canvasMain:
+            ###self.varR.set(value)
+            ###self.varG.set(value)
+            ###self.varB.set(value)
+            None
     def quit(self, event=None):
+
         super().quit()
 
 
 app = Application()
 app.mainloop()
+
