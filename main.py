@@ -5,18 +5,20 @@ import tkinter as tk
 from tkinter import Scale, HORIZONTAL, Canvas, Frame, Entry,LEFT,S,END,StringVar
 # from tkinter import ttk
 
-f = open("SavedColors", "w")
+
+
 
 
 
 class Application(tk.Tk):
     name = basename(splitext(basename(__file__.capitalize()))[0])
     name = "ColorMM"
-
+    
     def __init__(self):
         super().__init__(className=self.name)
         self.title(self.name)
 
+        self.protocol("WM_DELETE_WINDOW", self.quit)
         self.frameR = Frame(self)
         self.frameR.pack()
         self.frameG = Frame(self)
@@ -26,9 +28,9 @@ class Application(tk.Tk):
 
         self.bind("<Escape>", self.quit)
 
+
         ###R
         self.varR = StringVar()
-        self.varR.trace("w",self.change)
         self.lblR = tk.Label(self.frameR, text="R", font='Helvetica 18 bold')
         self.lblR.pack(side = LEFT,anchor=S)
         self.scaleR = Scale(self.frameR,from_=0, to=255, orient=HORIZONTAL,
@@ -39,7 +41,6 @@ class Application(tk.Tk):
    
         ###G
         self.varG = StringVar() 
-        self.varG.trace("w",self.change)
         self.lblG = tk.Label(self.frameG, text="G", font='Helvetica 18 bold')
         self.lblG.pack(side = LEFT,anchor=S)
         self.scaleG = Scale(self.frameG,from_=0, to=255, orient=HORIZONTAL,
@@ -50,7 +51,6 @@ class Application(tk.Tk):
 
         ###B
         self.varB = StringVar() 
-        self.varB.trace("w",self.change)
         self.lblB = tk.Label(self.frameB, text="B", font='Helvetica 18 bold')
         self.lblB.pack(side = LEFT,anchor=S)
         self.scaleB = Scale(self.frameB,from_=0, to=255, orient=HORIZONTAL,
@@ -69,26 +69,35 @@ class Application(tk.Tk):
         self.entryMain = Entry(self)
         self.entryMain.pack()
 
-
         ###self.btn2 = tk.Button(self, text="Cnhh", command=self.change)
         ###self.btn2.pack()
 
-
         self.frameMem = Frame(self)
         self.frameMem.pack()
-        for row in range(3):
-            for column in range(3):
+        self.canvasMem = []
+        for row in range(6):
+            for column in range(10):
                 canvas = Canvas(self.frameMem,width = 50, height = 50, background = "#ffffff")
                 canvas.grid(row = row, column= column)
-                canvas.bind("<Button-1>",self.cliclHandler) 
+                canvas.bind("<Button-1>",self.cliclHandler)
+                self.canvasMem.append(canvas)
             
 
 
         self.btn = tk.Button(self, text="Quit", command=self.quit)
         self.btn.pack()
 
+
         ###self.geometry('350x500')
         ###self.configure(background='#000000')
+
+        self.varR.trace("w",self.change)
+        self.varB.trace("w",self.change)
+        self.varG.trace("w",self.change)
+        self.load()
+        canvasMain2scales(self)
+
+        
     def setup():    
         f= open("SavedColors", "r")
         f.close()
@@ -121,8 +130,36 @@ class Application(tk.Tk):
             ###self.varG.set(value)
             ###self.varB.set(value)
             None
-    def quit(self, event=None):
 
+
+    def canvasMain2scales(self):
+        color = self.canvasMain.cget("background")
+        print(color)
+        r = int(color[1:3],16)
+        g = int(color[3:6],16)
+        b = int(color[5:7],16)
+        self.varR(set(r))
+        self.varG(set(r))
+        self.varB(set(r))
+
+    def load(self):
+        try:
+            with open("paleta.txt","r") as f:
+                color = f.readline().strip()
+                self.canvasMain.config(background=color)
+                for canvas in self.canvasMem:
+                    color = f.readline().strip()
+                    canvas.config(background=color)
+        except FileNotFoundError:
+            print("soubor neni")
+
+
+    def quit(self, event=None):
+        print("koneeec")
+        with open("paleta.txt", "w") as f :
+            f.write(self.canvasMain.cget("background")+"\n")
+            for canvas in self.canvasMem:
+                f.write(canvas.cget("background")+"\n")
         super().quit()
 
 
