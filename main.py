@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from os.path import basename, splitext
 import tkinter as tk
 from tkinter import Scale, HORIZONTAL, Canvas, Frame, Entry,LEFT,S,END,StringVar
@@ -118,8 +116,6 @@ class Application(tk.Tk):
         self.entryMain.delete(0,END)
         self.entryMain.insert(0, colorcode)
         self.canvasMain.config(background = colorcode)
-        print("posuvník" + colorcode)
-        ###self.configure(background=f'#{r:02x}{g:02x}{b:02x}')
 
     def cliclHandler(self, event):
         if self.cget("cursor") != "pencil":
@@ -149,13 +145,11 @@ class Application(tk.Tk):
         self.scaleG.set(g)
         self.scaleB.set(b)
         self.ignoreChange = False
-        ###self.change()
 
     def load(self):
         try:
             with open("paleta.txt","r") as f:
                 color = f.readline().strip()
-                print(color)
                 self.canvasMain.config(background=color)
                 for canvas in self.canvasMem:
                     color = f.readline().strip()
