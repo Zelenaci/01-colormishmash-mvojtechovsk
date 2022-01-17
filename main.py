@@ -149,8 +149,7 @@ class Application(tk.Tk):
         self.scaleG.set(g)
         self.scaleB.set(b)
         self.ignoreChange = False
-        ###self.change()
-
+        
     def load(self):
         try:
             with open("paleta.txt","r") as f:
