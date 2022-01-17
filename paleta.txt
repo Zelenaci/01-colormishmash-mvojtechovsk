@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ff41ff
 #ffffff
 #ffffff
@@ -8,10 +9,31 @@
 #ffffff
 #2e6d00
 #ffffff
+=======
+#000000
+#ffffff
+#ffffff
+#00ac00
+#00ac00
+#00ac00
+#00ac00
 #ffffff
 #ffffff
 #ffffff
 #ffffff
+#ffffff
+#00ac00
+#00ac00
+#f60600
+#00ac00
+#00ac00
+#00ac00
+>>>>>>> 1077cac0d41bc69801f6baa72c677a4f4e77b1cc
+#ffffff
+#ffffff
+#ffffff
+#ffffff
+<<<<<<< HEAD
 #ffffff
 #ff4100
 #ff4100
@@ -36,6 +58,26 @@
 #ffffff
 #00ffff
 #ffffff
+=======
+#00ac00
+#00ac00
+#00ac00
+#00ac00
+#f60600
+#00ac00
+>>>>>>> 1077cac0d41bc69801f6baa72c677a4f4e77b1cc
+#ffffff
+#ffffff
+#ffffff
+#ffffff
+#ffffff
+<<<<<<< HEAD
+=======
+#f60600
+#00ac00
+#00ac00
+#00ac00
+>>>>>>> 1077cac0d41bc69801f6baa72c677a4f4e77b1cc
 #ffffff
 #ffffff
 #ffffff
@@ -43,6 +85,11 @@
 #ffffff
 #ffffff
 #ffffff
+<<<<<<< HEAD
+=======
+#a56900
+#00ac00
+>>>>>>> 1077cac0d41bc69801f6baa72c677a4f4e77b1cc
 #ffffff
 #ffffff
 #ffffff
@@ -50,11 +97,13 @@
 #ffffff
 #ffffff
 #ffffff
-#ffffff
-#ffffff
-#ffffff
-#ffffff
-#ffffff
+<<<<<<< HEAD
+=======
+#a56900
+#a56900
+#a56900
+#a56900
+>>>>>>> 1077cac0d41bc69801f6baa72c677a4f4e77b1cc
 #ffffff
 #ffffff
 #ffffff
